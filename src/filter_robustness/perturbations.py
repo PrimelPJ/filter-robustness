@@ -443,3 +443,37 @@ _KEYBOARD_LAYOUT = {
 
 def _keyboard_neighbors(ch: str) -> list[str]:
     return list(_KEYBOARD_LAYOUT.get(ch, ""))
+
+
+class TextRepeat(Perturbation):
+    """Repeat words or characters to evade classifiers.
+
+    Attackers commonly stretch words ("freeee", "buyyy") to dodge
+    exact-match and n-gram based filters while remaining human-readable.
+
+    Parameters
+    ----------
+    rate : float
+        Probability of repeating a character in each word.
+    max_repeats : int
+        Maximum number of extra character repetitions.
+    """
+
+    def __init__(self, rate: float = 0.1, max_repeats: int = 3) -> None:
+        self.rate = rate
+        self.max_repeats = max_repeats
+
+    @property
+    def name(self) -> str:
+        return f"text_repeat(rate={self.rate})"
+
+    def apply(self, text: str, rng: random.Random) -> str:
+        words = text.split()
+        out: list[str] = []
+        for w in words:
+            if len(w) > 2 and rng.random() < self.rate:
+                idx = rng.randint(1, len(w) - 1)
+                repeats = rng.randint(1, self.max_repeats)
+                w = w[:idx] + w[idx] * repeats + w[idx:]
+            out.append(w)
+        return " ".join(out)
