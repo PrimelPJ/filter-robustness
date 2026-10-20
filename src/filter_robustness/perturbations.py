@@ -477,3 +477,40 @@ class TextRepeat(Perturbation):
                 w = w[:idx] + w[idx] * repeats + w[idx:]
             out.append(w)
         return " ".join(out)
+
+
+class WhitespaceInjection(Perturbation):
+    """Insert zero-width and irregular whitespace characters.
+
+    Unicode zero-width spaces, thin spaces, and other invisible characters
+    break tokenization without visibly changing the text.  This is a common
+    bypass for content moderation filters that rely on exact token matching.
+
+    Parameters
+    ----------
+    rate : float
+        Probability of injecting whitespace after each character.
+    """
+
+    _INVISIBLE = [
+        "\u200b",  # zero-width space
+        "\u200c",  # zero-width non-joiner
+        "\u200d",  # zero-width joiner
+        "\u2009",  # thin space
+        "\ufeff",  # zero-width no-break space
+    ]
+
+    def __init__(self, rate: float = 0.05) -> None:
+        self.rate = rate
+
+    @property
+    def name(self) -> str:
+        return f"whitespace_injection(rate={self.rate})"
+
+    def apply(self, text: str, rng: random.Random) -> str:
+        out: list[str] = []
+        for ch in text:
+            out.append(ch)
+            if ch != " " and rng.random() < self.rate:
+                out.append(rng.choice(self._INVISIBLE))
+        return "".join(out)
