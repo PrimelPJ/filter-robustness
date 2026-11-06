@@ -134,6 +134,10 @@ def load_spam_dataset() -> tuple[list[str], list[int]]:
         ("URGENT: IRS notification. You owe back taxes. Pay immediately to avoid arrest.", 1),
         ("Congratulations! You qualified for a low-interest credit card. Apply now!", 1),
         ("Secret method to earn passive income revealed! Click to learn more!", 1),
+        # Obfuscated spam (character substitution / spacing tricks)
+        ("C0ngratulati0ns! Y0u've w0n a fr33 iPhon3. Cl1ck h3r3!", 1),
+        ("U R G E N T: acc0unt c0mpromi$ed — $end passw0rd NOW", 1),
+        ("B.u.y  c.h.e.a.p  m.e.d.s  online!  No  prescription!!", 1),
         # Ham
         ("Hey, are we still meeting for lunch tomorrow at noon?", 0),
         ("The quarterly report is attached. Let me know if you have questions.", 0),

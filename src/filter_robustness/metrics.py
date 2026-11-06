@@ -122,6 +122,19 @@ def confidence_shift(
     return float(np.mean(shifts))
 
 
+def mean_robustness_score(per_strategy_accuracies: dict[str, float], clean_acc: float) -> float:
+    """Mean robustness score across all perturbation strategies.
+
+    Averages the per-strategy robustness scores, giving a single scalar
+    suitable for ranking filters or tracking improvement over time.
+    Returns 0.0 if no strategies are provided.
+    """
+    if not per_strategy_accuracies or clean_acc <= 0.0:
+        return 0.0
+    scores = [robustness_score(clean_acc, acc) for acc in per_strategy_accuracies.values()]
+    return float(np.mean(scores))
+
+
 def per_class_robustness(
     clean_predictions: list[int],
     perturbed_predictions: list[int],
