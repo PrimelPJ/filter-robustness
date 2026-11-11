@@ -186,6 +186,9 @@ def load_toxicity_dataset() -> tuple[list[str], list[int]]:
         ("Get lost you clown. Your ideas are laughably stupid.", 1),
         ("This is pure garbage. Anyone who agrees is an idiot.", 1),
         ("You have zero talent. Stop embarrassing yourself.", 1),
+        ("Oh sure, because *your* ideas have been so brilliant lately.", 1),
+        ("I'd explain it, but I doubt you'd understand even with help.", 1),
+        ("Bless your heart — this is somehow even worse than your last attempt.", 1),
         # Clean
         ("I respectfully disagree with the main argument presented here.", 0),
         ("Great analysis! I learned something new from this article.", 0),
