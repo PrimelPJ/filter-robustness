@@ -72,6 +72,14 @@ _SYNONYM_MAP: dict[str, list[str]] = {
     "dangerous": ["hazardous", "risky", "perilous", "unsafe", "threatening"],
     "real": ["genuine", "authentic", "actual", "legitimate", "true"],
     "fake": ["counterfeit", "fraudulent", "bogus", "phony", "sham"],
+    "share": ["distribute", "circulate", "spread", "post", "broadcast"],
+    "show": ["display", "present", "reveal", "demonstrate", "exhibit"],
+    "wrong": ["incorrect", "mistaken", "inaccurate", "erroneous", "false"],
+    "right": ["correct", "accurate", "proper", "valid", "true"],
+    "try": ["attempt", "endeavor", "test", "experiment", "sample"],
+    "find": ["discover", "locate", "uncover", "identify", "detect"],
+    "know": ["understand", "realize", "recognize", "grasp", "comprehend"],
+    "need": ["require", "demand", "want", "seek", "desire"],
 }
 
 # Homoglyph table for character-level attacks.  Maps ASCII to visually
