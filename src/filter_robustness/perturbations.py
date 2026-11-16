@@ -80,6 +80,14 @@ _SYNONYM_MAP: dict[str, list[str]] = {
     "find": ["discover", "locate", "uncover", "identify", "detect"],
     "know": ["understand", "realize", "recognize", "grasp", "comprehend"],
     "need": ["require", "demand", "want", "seek", "desire"],
+    "verify": ["confirm", "validate", "authenticate", "check", "prove"],
+    "account": ["profile", "wallet", "membership", "subscription", "access"],
+    "password": ["credential", "passphrase", "token", "pin", "secret"],
+    "update": ["refresh", "renew", "upgrade", "revise", "modify"],
+    "confirm": ["verify", "acknowledge", "approve", "attest", "validate"],
+    "secure": ["protect", "safeguard", "lock", "encrypt", "harden"],
+    "warning": ["alert", "notice", "caution", "notification", "advisory"],
+    "expire": ["lapse", "run out", "end", "terminate", "invalidate"],
 }
 
 # Homoglyph table for character-level attacks.  Maps ASCII to visually
