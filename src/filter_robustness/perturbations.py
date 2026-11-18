@@ -88,6 +88,15 @@ _SYNONYM_MAP: dict[str, list[str]] = {
     "secure": ["protect", "safeguard", "lock", "encrypt", "harden"],
     "warning": ["alert", "notice", "caution", "notification", "advisory"],
     "expire": ["lapse", "run out", "end", "terminate", "invalidate"],
+    "breach": ["compromise", "intrusion", "leak", "exposure", "incident"],
+    "attack": ["intrude", "exploit", "compromise", "infiltrate", "hack"],
+    "scan": ["probe", "enumerate", "survey", "sweep", "fingerprint"],
+    "install": ["deploy", "set up", "execute", "run", "load"],
+    "download": ["fetch", "pull", "retrieve", "grab", "obtain"],
+    "notify": ["inform", "alert", "advise", "warn", "ping"],
+    "claim": ["assert", "request", "demand", "collect", "redeem"],
+    "reward": ["prize", "bonus", "incentive", "payout", "benefit"],
+    "report": ["disclose", "flag", "submit", "document", "log"],
 }
 
 # Homoglyph table for character-level attacks.  Maps ASCII to visually
