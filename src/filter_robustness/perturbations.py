@@ -539,3 +539,35 @@ class WhitespaceInjection(Perturbation):
             if ch != " " and rng.random() < self.rate:
                 out.append(rng.choice(self._INVISIBLE))
         return "".join(out)
+
+
+class PunctuationStrip(Perturbation):
+    """Remove or replace punctuation characters in the input.
+
+    Adversarial inputs sometimes strip sentence-ending punctuation to disrupt
+    n-gram boundaries that classifiers rely on during token matching.
+
+    Parameters
+    ----------
+    replacement : str
+        Character to substitute in place of punctuation.  Empty string
+        removes punctuation entirely.
+    chars : str
+        Set of punctuation characters to target.
+    """
+
+    DEFAULT_CHARS = "!?.,:;\"'()-"
+
+    def __init__(self, replacement: str = "", chars: str = DEFAULT_CHARS) -> None:
+        self.replacement = replacement
+        self.chars = chars
+
+    @property
+    def name(self) -> str:
+        return f"punctuation_strip(replacement={self.replacement!r})"
+
+    def apply(self, text: str, rng: random.Random) -> str:
+        return "".join(
+            self.replacement if ch in self.chars else ch
+            for ch in text
+        )
