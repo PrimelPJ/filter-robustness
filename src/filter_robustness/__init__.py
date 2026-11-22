@@ -14,6 +14,7 @@ from .perturbations import (
     WordReorder,
     CasePerturb,
     ContractionFlip,
+    NumberSubstitution,
 )
 from .evaluator import RobustnessEvaluator, RobustnessReport
 from .recovery import AdversarialTrainer, InputCanonicalizer, EnsembleSmoother
@@ -28,6 +29,7 @@ __all__ = [
     "WordReorder",
     "CasePerturb",
     "ContractionFlip",
+    "NumberSubstitution",
     "RobustnessEvaluator",
     "RobustnessReport",
     "AdversarialTrainer",
