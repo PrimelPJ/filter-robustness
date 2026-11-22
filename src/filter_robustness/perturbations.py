@@ -504,6 +504,48 @@ class TextRepeat(Perturbation):
         return " ".join(out)
 
 
+class NumberSubstitution(Perturbation):
+    """Replace letters with visually similar digits (leet-speak style).
+
+    Adversarial inputs commonly swap vowels and consonants for digits
+    (a→4, e→3, i→1, o→0, s→5, t→7, b→8, g→9) to evade classifiers
+    trained on plain ASCII text.
+
+    Parameters
+    ----------
+    rate : float
+        Probability of substituting each eligible character.
+    """
+
+    _LEET_MAP: dict[str, str] = {
+        "a": "4",
+        "e": "3",
+        "i": "1",
+        "o": "0",
+        "s": "5",
+        "t": "7",
+        "b": "8",
+        "g": "9",
+    }
+
+    def __init__(self, rate: float = 0.4) -> None:
+        self.rate = rate
+
+    @property
+    def name(self) -> str:
+        return f"number_substitution(rate={self.rate})"
+
+    def apply(self, text: str, rng: random.Random) -> str:
+        out: list[str] = []
+        for ch in text:
+            lower = ch.lower()
+            if lower in self._LEET_MAP and rng.random() < self.rate:
+                out.append(self._LEET_MAP[lower])
+            else:
+                out.append(ch)
+        return "".join(out)
+
+
 class WhitespaceInjection(Perturbation):
     """Insert zero-width and irregular whitespace characters.
 
