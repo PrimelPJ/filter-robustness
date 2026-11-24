@@ -613,3 +613,33 @@ class PunctuationStrip(Perturbation):
             self.replacement if ch in self.chars else ch
             for ch in text
         )
+
+
+class SpaceInsertion(Perturbation):
+    """Insert spaces between characters of randomly chosen words.
+
+    Adversaries split keywords ("f r e e", "b u y") to fragment tokens and
+    break n-gram features that classifiers learned on contiguous words.
+
+    Parameters
+    ----------
+    rate : float
+        Probability of splitting each word in the input.
+    """
+
+    def __init__(self, rate: float = 0.2) -> None:
+        self.rate = rate
+
+    @property
+    def name(self) -> str:
+        return f"space_insertion(rate={self.rate})"
+
+    def apply(self, text: str, rng: random.Random) -> str:
+        words = text.split()
+        out: list[str] = []
+        for w in words:
+            if len(w) > 2 and rng.random() < self.rate:
+                out.append(" ".join(w))
+            else:
+                out.append(w)
+        return " ".join(out)
